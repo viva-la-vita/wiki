@@ -1,0 +1,29 @@
+{
+  "name": "my-gatsby-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My Gatsby Site",
+  "author": "Songchen Tan",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "gatsby": "^3.10.2",
+    "gatsby-plugin-mdx": "^2.10.1",
+    "gatsby-plugin-netlify-cms": "^5.10.0",
+    "gatsby-source-filesystem": "^3.10.0",
+    "netlify-cms-app": "^2.15.30",
+    "netlify-cms-locales": "^1.33.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

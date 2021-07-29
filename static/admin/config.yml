@@ -1,0 +1,60 @@
+backend:
+  name: git-gateway
+
+# local_backend: true
+publish_mode: editorial_workflow
+
+locale: zh-Hans
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: metadata
+    label: 元数据
+    files:
+      - name: contents
+        label: 目录
+        file: contents.yml
+        fields:
+          - name: index
+            label: 首页
+            widget: relation
+            collection: docs
+            value_field: title
+            search_fields: [title, title_cn]
+            display_fields: [title_cn]
+          - name: sections
+            label: 章节
+            widget: list
+            fields:
+              - name: subindex
+                label: 章节首页
+                widget: relation
+                collection: docs
+                value_field: title
+                search_fields: [title, title_cn]
+                display_fields: [title_cn]
+              - name: pages
+                label: 文章
+                widget: list
+                fields:
+                  - name: title
+                    label: 标题
+                    widget: relation
+                    collection: docs
+                    value_field: title
+                    search_fields: [title, title_cn]
+                    display_fields: [title_cn]
+  - name: docs
+    label: 文章
+    extension: mdx
+    format: frontmatter
+    folder: docs
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title_cn}}'
+    fields:
+      - { label: 中文标题, name: title_cn, widget: string }
+      - { label: 英文标题, name: title, widget: string }
+      - { label: 内容, name: body, widget: markdown }
