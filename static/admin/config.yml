@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
 
+# For local development, enable `local_backend` and disable `publish_mode`; for production, disable `local_backend` and enable `publish_mode`
+
 # local_backend: true
 publish_mode: editorial_workflow
 
@@ -53,7 +55,8 @@ collections:
     folder: docs
     create: true
     slug: '{{slug}}'
-    summary: '{{title_cn}}'
+    summary: '{{title_cn}} ({{title}})'
+    sortable_fields: [commit_date, title, title_cn]
     fields:
       - { label: 中文标题, name: title_cn, widget: string }
       - { label: 英文标题, name: title, widget: string }
