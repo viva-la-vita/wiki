@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/styles";
 
 
-const useStyles = makeStyles(({ spacing, zIndex, breakpoints, mixins }) =>
+const useStyles = makeStyles(({ spacing, zIndex}) =>
   createStyles({
     appbar: {
       backgroundColor: "white",

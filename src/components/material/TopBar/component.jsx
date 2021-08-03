@@ -10,7 +10,7 @@ import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
 import useStyles from "./style";
 
 
-const useStylesBootstrap = makeStyles((theme) => ({
+const useStylesBootstrap = makeStyles(() => ({
   arrow: {
     color: "black",
   },
@@ -33,7 +33,7 @@ const TopBar = memo(({ handleDrawerToggle }) => {
       position="fixed"
       color="inherit"
       className={classes.appbar}>
-      <Toolbar>
+      <Toolbar >
         <Hidden smUp implementation="css">
           <IconButton
             edge="start"
@@ -41,7 +41,6 @@ const TopBar = memo(({ handleDrawerToggle }) => {
             size="medium"
             color="inherit"
             onClick={handleDrawerToggle}
-
           >
             <MenuIcon />
           </IconButton>
@@ -58,7 +57,8 @@ const TopBar = memo(({ handleDrawerToggle }) => {
             <HomeRoundedIcon />
           </IconButton>
         </BootstrapTooltip >
-        <BootstrapTooltip title="论坛">
+        <BootstrapTooltip
+          title="论坛">
           <IconButton
             color="primary"
             size="medium"

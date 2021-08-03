@@ -15,21 +15,25 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
+    "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.4",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "babel-preset-next": "^1.4.0",
     "gatsby": "^3.10.2",
+    "gatsby-plugin-material-ui": "^3.0.1",
     "gatsby-plugin-mdx": "^2.10.1",
     "gatsby-plugin-netlify-cms": "^5.10.0",
     "gatsby-source-filesystem": "^3.10.0",
+    "gatsby-theme-material-ui": "^2.0.1",
     "netlify-cms-app": "^2.15.30",
     "netlify-cms-locales": "^1.33.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "gatsby-cli": "^3.10.0"
+    "gatsby-cli": "^3.10.0",
+    "babel-plugin-styled-components": "^1.13.2"
   }
 }

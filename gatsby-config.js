@@ -18,5 +18,9 @@ module.exports = {
       },
     },
     "gatsby-plugin-mdx",
+    `gatsby-theme-material-ui`,
   ],
+  flags: {
+    DEV_SSR: false
+   }
 };

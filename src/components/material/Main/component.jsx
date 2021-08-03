@@ -11,7 +11,7 @@ const Main = memo(({ frontmatter, children }) => {
     <main className={classes.content}>
       <div className={classes.toolbar} />
       <Header frontmatter={frontmatter} />
-      <Typography paragraph>
+      <Typography component={'span'} paragraph>
         {children}
       </Typography>
       <Footer />
