@@ -1,6 +1,9 @@
 import React, { memo } from "react";
 
-import { AppBar, Hidden, IconButton, Toolbar, Tooltip, Typography } from "@material-ui/core";
+import {
+  AppBar, Hidden, IconButton, Button,
+  Toolbar, Tooltip, Typography, Menu, MenuItem
+} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -9,6 +12,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
 import useStyles from "./style";
 import { graphql, useStaticQuery, Link } from 'gatsby';
+import { withStyles } from "@material-ui/styles";
 
 
 const useStylesBootstrap = makeStyles(() => ({
@@ -26,8 +30,57 @@ function BootstrapTooltip(props) {
   return <Tooltip arrow classes={classes} {...props} />;
 }
 
-const TopBar = memo(({ handleDrawerToggle }) => {
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+const series_map = new Map([
+  [undefined, 0],
+  ["nipple", 0],
+  ["prostate", 1]
+]);
+
+const TopBar = memo(({ handleDrawerToggle, series }) => {
   const classes = useStyles()
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  const handleClickMenu = (e) => {
+    setAnchorEl(e.currentTarget)
+    console.log(anchorEl)
+  }
+
+  const handleMenuClose = () => {
+    setAnchorEl(null)
+  }
 
   const { allMdx } = useStaticQuery(graphql`
     query {
@@ -41,6 +94,7 @@ const TopBar = memo(({ handleDrawerToggle }) => {
       }
     }
   `);
+
 
   return (
     <AppBar
@@ -60,14 +114,46 @@ const TopBar = memo(({ handleDrawerToggle }) => {
           </IconButton>
         </Hidden>
 
-        <Typography className={classes.title} variant="h5" noWrap>
-          <Link to='/'>
+
+        <Typography className={classes.title} variant="h5" noWrap color="primary">
+          <Link className={classes.titleLink} to='/' variant="inherit">
             生如夏花
           </Link>
         </Typography>
-        {
-          allMdx.nodes.map(({ frontmatter, slug }) => <Link key={slug} to={`/${slug}`}>{frontmatter.title_cn}</Link>)
-        }
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleClickMenu}>
+          选择内容
+        </Button>
+        <StyledMenu
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}>
+          {
+            allMdx.nodes.map(({ frontmatter, slug }, index) =>
+              <StyledMenuItem
+                component={Link}
+                to={`/${slug}`}
+                selected={series_map.get(series) === index}
+                key={slug}
+              >
+
+                {frontmatter.title_cn}
+              </StyledMenuItem >
+            )
+          }
+        </StyledMenu>
+
+        {/* {
+          allMdx.nodes.map(({ frontmatter, slug }) =>
+            <StyledMenuItem>
+              <Link key={slug} to={`/${slug}`}>{frontmatter.title_cn}</Link>
+            </StyledMenuItem >
+          )
+        } */}
         <BootstrapTooltip title="主页">
           <IconButton
             color="primary"
@@ -94,7 +180,7 @@ const TopBar = memo(({ handleDrawerToggle }) => {
           </IconButton>
         </BootstrapTooltip>
       </Toolbar>
-    </AppBar>
+    </AppBar >
   )
 });
 

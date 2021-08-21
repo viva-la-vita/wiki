@@ -5,8 +5,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx' // highlight-line
 import Layout from "../components/material/Layout";
 
 const BlogPost = React.memo(({ data }) => { // highlight-line
-
-
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -19,9 +17,12 @@ const BlogPost = React.memo(({ data }) => { // highlight-line
   for (let item of data.allContentsYaml.nodes) {
     if (item.series === series) {
       contents = item;
+      break
     }
   }
+  // nipple or prostate
   console.log(series);
+
   console.log(contents);
 
   return (

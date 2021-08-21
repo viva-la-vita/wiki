@@ -9,17 +9,22 @@ const Frame = memo(({ contents, frontmatter, window }) => {
 
   const classes = useStyles()
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  // const [isNoContents, setIsNoContents] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-
   const container = window !== undefined ? () => window().document.body : undefined;
+
+  const series = Boolean(contents) ? contents.series : undefined
 
   return (
     <div>
-      <TopBar handleDrawerToggle={handleDrawerToggle} />
+      <TopBar
+       handleDrawerToggle={handleDrawerToggle} 
+       series={series}
+       />
       { contents ?
       <nav className={classes.drawer}>
         <Hidden smUp implementation="css">

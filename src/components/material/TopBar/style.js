@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/styles";
 
 
-const useStyles = makeStyles(({ spacing, zIndex}) =>
+const useStyles = makeStyles(({ spacing, zIndex, palette }) =>
   createStyles({
     appbar: {
       backgroundColor: "white",
@@ -12,6 +12,16 @@ const useStyles = makeStyles(({ spacing, zIndex}) =>
     },
     title: {
       flexGrow: 1,
+
+    },
+    titleLink: {
+      textDecoration: 'none',
+      "&:visited":{
+        color: palette.primary.main,
+      },
+      "&:hover": {
+        color: "green"
+      }
     },
     hide: {
       display: 'none',
