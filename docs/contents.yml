@@ -1,0 +1,42 @@
+- series: nipple
+  index: index
+  sections:
+    - subindex: introduction
+      pages:
+        - title: reaction
+        - title: nipple
+        - title: possibility
+    - subindex: development
+      pages:
+        - title: risk
+        - title: hand
+        - title: acupuncture
+        - title: compensation
+        - title: acceleration
+        - title: level
+    - subindex: masturbation
+      pages:
+        - title: preparation
+        - title: technique
+        - title: pleasure
+        - title: orgasm
+        - title: toy
+    - subindex: appendix
+      pages:
+        - title: faq
+- series: prostate
+  index: index
+  sections:
+    - subindex: introduction
+      pages:
+        - title: procedure
+        - title: principle
+        - title: orgasm
+        - title: advanced
+        - title: misconception
+        - title: faq
+        - title: glossary
+        - title: women
+        - title: health
+        - title: history
+        - title: appendix

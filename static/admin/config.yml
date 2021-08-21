@@ -15,14 +15,14 @@ collections:
   - name: metadata
     label: 元数据
     files:
-      - name: contents
-        label: 目录
-        file: contents.yml
+      - name: nipple
+        label: 乳首开发文档目录
+        file: docs/nipple/contents.yml
         fields:
           - name: index
             label: 首页
             widget: relation
-            collection: docs
+            collection: nipple_docs
             value_field: title
             search_fields: [title, title_cn]
             display_fields: [title_cn]
@@ -33,7 +33,7 @@ collections:
               - name: subindex
                 label: 章节首页
                 widget: relation
-                collection: docs
+                collection: nipple_docs
                 value_field: title
                 search_fields: [title, title_cn]
                 display_fields: [title_cn]
@@ -44,15 +44,50 @@ collections:
                   - name: title
                     label: 标题
                     widget: relation
-                    collection: docs
+                    collection: nipple_docs
                     value_field: title
                     search_fields: [title, title_cn]
                     display_fields: [title_cn]
-  - name: docs
-    label: 文章
+      - name: prostate
+        label: 前列腺开发文档目录
+        file: docs/prostate/contents.yml
+        fields:
+          - name: index
+            label: 首页
+            widget: relation
+            collection: prostate_docs
+            value_field: title
+            search_fields: [title, title_cn]
+            display_fields: [title_cn]
+          - name: pages
+            label: 文章
+            widget: list
+            fields:
+              - name: title
+                label: 标题
+                widget: relation
+                collection: prostate_docs
+                value_field: title
+                search_fields: [title, title_cn]
+                display_fields: [title_cn]
+  - name: nipple_docs
+    label: 乳首开发文章
     extension: mdx
     format: frontmatter
-    folder: docs
+    folder: docs/nipple
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title_cn}} ({{title}})'
+    sortable_fields: [commit_date, title, title_cn]
+    fields:
+      - { label: 中文标题, name: title_cn, widget: string }
+      - { label: 英文标题, name: title, widget: string }
+      - { label: 内容, name: body, widget: markdown }
+  - name: prostate_docs
+    label: 前列腺开发文章
+    extension: mdx
+    format: frontmatter
+    folder: docs/prostate
     create: true
     slug: '{{slug}}'
     summary: '{{title_cn}} ({{title}})'

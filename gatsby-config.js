@@ -17,7 +17,8 @@ module.exports = {
         path: `${__dirname}/docs/`,
       },
     },
-    "gatsby-plugin-mdx",
+    `gatsby-transformer-yaml`,
+    `gatsby-plugin-mdx`,
     `gatsby-theme-material-ui`,
   ],
   flags: {

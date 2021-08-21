@@ -5,7 +5,7 @@ import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider as ThemeProvider, createMuiTheme as createTheme } from '@material-ui/core/styles';
 import useStyles from "./style";
 
-const Layout = memo(({ frontmatter, children }) => {
+const Layout = memo(({ frontmatter, contents, children }) => {
 
 
 
@@ -28,7 +28,7 @@ const Layout = memo(({ frontmatter, children }) => {
         <CssBaseline />
         <title>{frontmatter.title_cn}</title>
         <div className={classes.root}>
-          <Frame frontmatter={frontmatter} />
+          <Frame frontmatter={frontmatter} contents={contents} />
           <Main frontmatter={frontmatter} children={children} />
         </div >
       </ThemeProvider>

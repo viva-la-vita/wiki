@@ -5,7 +5,7 @@ import TopBar from '../TopBar'
 import useStyles from "./style"
 
 
-const Frame = memo(({ frontmatter, window }) => {
+const Frame = memo(({ contents, frontmatter, window }) => {
 
   const classes = useStyles()
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -20,6 +20,7 @@ const Frame = memo(({ frontmatter, window }) => {
   return (
     <div>
       <TopBar handleDrawerToggle={handleDrawerToggle} />
+      { contents ?
       <nav className={classes.drawer}>
         <Hidden smUp implementation="css">
           <Drawer
@@ -34,7 +35,7 @@ const Frame = memo(({ frontmatter, window }) => {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <Aside frontmatter={frontmatter} />
+            <Aside frontmatter={frontmatter} contents={contents} />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -45,10 +46,11 @@ const Frame = memo(({ frontmatter, window }) => {
             variant="permanent"
             open
           >
-            <Aside frontmatter={frontmatter} />
+            <Aside frontmatter={frontmatter} contents={contents} />
           </Drawer>
         </Hidden>
       </nav>
+      : <div></div> }
     </div>
   )
 

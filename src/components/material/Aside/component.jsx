@@ -2,13 +2,12 @@ import { Divider, List, ListItem } from '@material-ui/core';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import React, { memo } from "react";
 import { Fragment } from 'react-is';
-import contents from "../../../../contents.yml";
 // import { sidebarBase, sidebarSectionNormal, sidebarSectionHighlight, sidebarItemNormal, sidebarItemHighlight } from "../styles/aside.module.css"
 import useStyles from "./style"
 
 
 
-const Aside = memo(({ frontmatter }) => {
+const Aside = memo(({ contents, frontmatter }) => {
   const classes = useStyles();
 
 
@@ -16,7 +15,7 @@ const Aside = memo(({ frontmatter }) => {
     <Link
       key={title}
       className={`${classes.sidebarBase} ${frontmatter.title === title ? classes.sidebarSectionHighlight : classes.sidebarSectionNormal}`}
-      to={`/${title === 'index' ? '' : title}`}>
+      to={`/${contents.series}/${title === 'index' ? '' : title}`}>
       <ListItem button key={title}>
         {title_cn}
       </ListItem>
@@ -32,7 +31,7 @@ const Aside = memo(({ frontmatter }) => {
             <Link
               key={title}
               className={`${classes.sidebarBase} ${frontmatter.title === title ? classes.sidebarItemHighlight : classes.sidebarItemNormal}`}
-              to={`/${title === 'index' ? '' : title}`}>
+              to={`/${contents.series}/${title === 'index' ? '' : title}`}>
               <ListItem button key={title}>
                 {title_cn}
               </ListItem>
@@ -52,6 +51,7 @@ const Aside = memo(({ frontmatter }) => {
             title_cn
             title
           }
+          slug
         }
       }
     }
@@ -59,6 +59,7 @@ const Aside = memo(({ frontmatter }) => {
 
   let title_cn_lookup = {};
   for (let data of allMdx.nodes) {
+    if (data.slug.split('/')[0] === contents.series)
     title_cn_lookup[data.frontmatter.title] = data.frontmatter.title_cn;
   }
 

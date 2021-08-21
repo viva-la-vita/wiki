@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx' // highlight-line
-// import Layout from '../components/layout'
 
 import Layout from "../components/material/Layout";
 
@@ -14,9 +13,19 @@ const BlogPost = React.memo(({ data }) => { // highlight-line
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-  
+
+  let series = data.mdx.slug.split('/')[0];
+  let contents = undefined;
+  for (let item of data.allContentsYaml.nodes) {
+    if (item.series === series) {
+      contents = item;
+    }
+  }
+  console.log(series);
+  console.log(contents);
+
   return (
-    <Layout frontmatter={data.mdx.frontmatter}>
+    <Layout frontmatter={data.mdx.frontmatter} contents={contents}>
       <MDXRenderer>
         {data.mdx.body}
       </MDXRenderer>
@@ -32,6 +41,19 @@ export const query = graphql`
         title_cn
       }
       body
+      slug
+    }
+    allContentsYaml {
+      nodes {
+        index
+        series
+        sections {
+          subindex
+          pages {
+            title
+          }
+        }
+      }
     }
   }
 `

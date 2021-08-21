@@ -8,6 +8,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
 import useStyles from "./style";
+import { graphql, useStaticQuery, Link } from 'gatsby';
 
 
 const useStylesBootstrap = makeStyles(() => ({
@@ -28,6 +29,19 @@ function BootstrapTooltip(props) {
 const TopBar = memo(({ handleDrawerToggle }) => {
   const classes = useStyles()
 
+  const { allMdx } = useStaticQuery(graphql`
+    query {
+      allMdx(filter: {frontmatter: {title: {eq: "index"}}, slug: {ne: ""}}) {
+        nodes {
+          frontmatter {
+            title_cn
+          }
+          slug
+        }
+      }
+    }
+  `);
+
   return (
     <AppBar
       position="fixed"
@@ -47,8 +61,13 @@ const TopBar = memo(({ handleDrawerToggle }) => {
         </Hidden>
 
         <Typography className={classes.title} variant="h5" noWrap>
-          生如夏花
+          <Link to='/'>
+            生如夏花
+          </Link>
         </Typography>
+        {
+          allMdx.nodes.map(({ frontmatter, slug }) => <Link key={slug} to={`/${slug}`}>{frontmatter.title_cn}</Link>)
+        }
         <BootstrapTooltip title="主页">
           <IconButton
             color="primary"
