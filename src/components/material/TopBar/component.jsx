@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
+// import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -75,7 +76,7 @@ const TopBar = memo(({ handleDrawerToggle, series }) => {
 
   const handleClickMenu = (e) => {
     setAnchorEl(e.currentTarget)
-    console.log(anchorEl)
+    // console.log(anchorEl)
   }
 
   const handleMenuClose = () => {
@@ -102,7 +103,7 @@ const TopBar = memo(({ handleDrawerToggle, series }) => {
       color="inherit"
       className={classes.appbar}>
       <Toolbar >
-        <Hidden smUp implementation="css">
+        <Hidden className={classes.phoneHidden} smUp implementation="css">
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -112,40 +113,57 @@ const TopBar = memo(({ handleDrawerToggle, series }) => {
           >
             <MenuIcon />
           </IconButton>
+
+          {/* <BootstrapTooltip title="生~如夏花">
+          <IconButton
+
+            className={classes.flowButton}
+            size="medium"
+            color="inherit"
+            component={Link}
+            to='/'>
+            <EmojiNatureIcon />
+          </IconButton>
+          </ BootstrapTooltip > */}
+        </Hidden>
+        <Hidden className={classes.title} xsDown implementation="css">
+          <Typography variant="h5" noWrap color="primary">
+            <Link className={classes.titleLink} to='/' variant="inherit">
+              生如夏花
+            </Link>
+          </Typography>
         </Hidden>
 
+        <Hidden xsDown implementation="css">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClickMenu}>
+            选择主题
+          </Button>
 
-        <Typography className={classes.title} variant="h5" noWrap color="primary">
-          <Link className={classes.titleLink} to='/' variant="inherit">
-            生如夏花
-          </Link>
-        </Typography>
 
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleClickMenu}>
-          选择内容
-        </Button>
-        <StyledMenu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}>
-          {
-            allMdx.nodes.map(({ frontmatter, slug }, index) =>
-              <StyledMenuItem
-                component={Link}
-                to={`/${slug}`}
-                selected={series_map.get(series) === index}
-                key={slug}
-              >
+          <StyledMenu
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}>
+            {
+              allMdx.nodes.map(({ frontmatter, slug }, index) =>
+                <StyledMenuItem
+                  component={Link}
+                  to={`/${slug}`}
+                  selected={series_map.get(series) === index}
+                  key={slug}
+                >
 
-                {frontmatter.title_cn}
-              </StyledMenuItem >
-            )
-          }
-        </StyledMenu>
+                  {frontmatter.title_cn}
+                </StyledMenuItem >
+              )
+            }
+          </StyledMenu>
+        </Hidden>
+
 
         {/* {
           allMdx.nodes.map(({ frontmatter, slug }) =>

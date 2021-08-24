@@ -5,8 +5,10 @@ const drawerWidth = 240;
 const useStyles = makeStyles(({ palette, breakpoints, mixins }) =>
     createStyles({
         sidebarBase: {
+            display: "inline-box",
             textDecoration: "none",
             color: "black",
+            width: "100%",
         },
         sidebarSectionNormal: {
             fontSize: "1.5em",
@@ -16,6 +18,7 @@ const useStyles = makeStyles(({ palette, breakpoints, mixins }) =>
             fontSize: "1.5em",
             fontWeight: "bold",
             color: palette.primary.main,
+            borderLeft: "0.25rem solid"
         },
         sidebarItemNormal: {
             fontSize: "1.2em",
@@ -23,6 +26,7 @@ const useStyles = makeStyles(({ palette, breakpoints, mixins }) =>
         sidebarItemHighlight: {
             fontSize: "1.2em",
             color: palette.primary.main,
+            borderLeft: "0.25rem solid"
         },
 
         drawer: {
@@ -37,6 +41,16 @@ const useStyles = makeStyles(({ palette, breakpoints, mixins }) =>
             overflow: 'auto',
         },
         toolbar: mixins.toolbar,
+        titleLink: {
+            textDecoration: 'none',
+            "&:visited": {
+                color: palette.primary.main,
+            },
+            "&:hover": {
+                color: "green"
+            }
+        }
+
     }),
 );
 

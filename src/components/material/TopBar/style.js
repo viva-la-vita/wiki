@@ -12,7 +12,13 @@ const useStyles = makeStyles(({ spacing, zIndex, palette }) =>
     },
     title: {
       flexGrow: 1,
-
+    },
+    phoneHidden: {
+      flexGrow: 1,
+    },
+    flowButton: {
+      marginLeft: spacing(-2),
+      color: "#ef476f"
     },
     titleLink: {
       textDecoration: 'none',
