@@ -3,8 +3,8 @@ backend:
 
 # For local development, enable `local_backend` and disable `publish_mode`; for production, disable `local_backend` and enable `publish_mode`
 
-# local_backend: true
-publish_mode: editorial_workflow
+local_backend: true
+# publish_mode: editorial_workflow
 
 locale: zh-Hans
 
@@ -12,13 +12,17 @@ media_folder: static/images
 public_folder: /images
 
 collections:
-  - name: metadata
-    label: 元数据
+  - name: contents
+    label: 文档目录
+    create: true
     files:
       - name: nipple
         label: 乳首开发文档目录
-        file: docs/nipple/contents.yml
+        file: docs/contents/nipple.yml
         fields:
+          - name: series
+            label: 系列
+            widget: string
           - name: index
             label: 首页
             widget: relation
@@ -50,8 +54,11 @@ collections:
                     display_fields: [title_cn]
       - name: prostate
         label: 前列腺开发文档目录
-        file: docs/prostate/contents.yml
+        file: docs/contents/prostate.yml
         fields:
+          - name: series
+            label: 系列
+            widget: string
           - name: index
             label: 首页
             widget: relation
@@ -59,17 +66,28 @@ collections:
             value_field: title
             search_fields: [title, title_cn]
             display_fields: [title_cn]
-          - name: pages
-            label: 文章
+          - name: sections
+            label: 章节
             widget: list
             fields:
-              - name: title
-                label: 标题
+              - name: subindex
+                label: 章节首页
                 widget: relation
                 collection: prostate_docs
                 value_field: title
                 search_fields: [title, title_cn]
                 display_fields: [title_cn]
+              - name: pages
+                label: 文章
+                widget: list
+                fields:
+                  - name: title
+                    label: 标题
+                    widget: relation
+                    collection: prostate_docs
+                    value_field: title
+                    search_fields: [title, title_cn]
+                    display_fields: [title_cn]
   - name: nipple_docs
     label: 乳首开发文章
     extension: mdx

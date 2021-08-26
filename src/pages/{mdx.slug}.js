@@ -12,7 +12,7 @@ const BlogPost = React.memo(({ data }) => { // highlight-line
     }
   }, []);
 
-  
+
   let series = data.mdx.slug.split('/')[0];
   let contents = undefined;
   for (let item of data.allContentsYaml.nodes) {
