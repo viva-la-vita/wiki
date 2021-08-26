@@ -3,8 +3,8 @@ backend:
 
 # For local development, enable `local_backend` and disable `publish_mode`; for production, disable `local_backend` and enable `publish_mode`
 
-local_backend: true
-# publish_mode: editorial_workflow
+# local_backend: true
+publish_mode: editorial_workflow
 
 locale: zh-Hans
 
