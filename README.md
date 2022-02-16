@@ -21,7 +21,7 @@ npm run develop
 
 ## Netlify CMS 内容管理
 
-`docs/` 下的 MDX 文档由 Netlify CMS 来管理。要在本地运行该系统，首先在 `static/admin/config.yml` 中将 `local_backend: true` 取消注释，然后将 `publish_mode: editorial_workflow` 注释掉；同时在另一个终端窗口运行 `npx netlify-cms-proxy-server` 启动本地文件服务器。然后可以在内容管理页面（http://localhost:8000/admin/）看到所有内容。
+`docs/` 下的 MDX 文档由 Netlify CMS 来管理。要在本地运行该系统，首先在 `static/admin/config.yml` 中将 `local_backend: true` 取消注释，然后将 `publish_mode: editorial_workflow` 注释掉；同时在另一个终端窗口运行 `npx netlify-cms-proxy-server` 启动本地文件服务器。然后可以在内容管理页面（<http://localhost:8000/admin/>）看到所有内容。
 
 - 「文章」集合对应的是 `docs/` 目录下的文章
 - 「元数据」集合中「目录」文件对应的是 `contents.yml`，它指定了侧边栏的目录
