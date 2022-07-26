@@ -20,21 +20,22 @@
     "@material-ui/styles": "^4.11.4",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "axios": "^0.27.2",
     "babel-preset-next": "^1.4.0",
-    "gatsby": "^3.10.2",
-    "gatsby-plugin-material-ui": "^3.0.1",
-    "gatsby-plugin-mdx": "^2.10.1",
-    "gatsby-plugin-netlify-cms": "^5.10.0",
-    "gatsby-source-filesystem": "^3.10.0",
-    "gatsby-theme-material-ui": "^2.0.1",
-    "gatsby-transformer-yaml": "^3.12.0",
-    "netlify-cms-app": "^2.15.30",
-    "netlify-cms-locales": "^1.33.0",
+    "gatsby": "^4.18.2",
+    "gatsby-plugin-image": "^2.19.0",
+    "gatsby-plugin-manifest": "^4.19.0",
+    "gatsby-plugin-material-ui": "^4.1.0",
+    "gatsby-plugin-mdx": "^3.18.1",
+    "gatsby-plugin-sharp": "^4.19.0",
+    "gatsby-source-filesystem": "^4.19.0",
+    "gatsby-source-strapi": "^2.0.0",
+    "gatsby-theme-material-ui": "^5.2.0",
+    "gatsby-transformer-sharp": "^4.19.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.13.2",
-    "gatsby-cli": "^3.10.0"
+    "babel-plugin-styled-components": "^1.13.2"
   }
 }

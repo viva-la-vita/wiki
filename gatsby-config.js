@@ -1,23 +1,28 @@
+require('dotenv').config({
+  path: `.env`,
+});
+
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "My Gatsby Site",
+    siteUrl: "https://wiki.viva-la-vita.org",
+    title: "生如夏花",
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        modulePath: `${__dirname}/src/cms.js`,
+        icon: "src/images/icon.png",
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-strapi`,
       options: {
-        name: `docs`,
-        path: `${__dirname}/docs/`,
+        apiURL: 'https://api.viva-la-vita.org',
+        accessToken: process.env.STRAPI_TOKEN,
+        collectionTypes: ['article'],
+        singleTypes: [],
       },
     },
-    `gatsby-transformer-yaml`,
     `gatsby-plugin-mdx`,
     `gatsby-theme-material-ui`,
   ],
