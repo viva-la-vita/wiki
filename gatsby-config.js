@@ -11,7 +11,19 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
+        name: `生如夏花知识库`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#ff7777`,
+        display: `standalone`,
         icon: "src/images/icon.png",
+        include_favicon: false
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`**`],
       },
     },
     {

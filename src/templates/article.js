@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
@@ -22,9 +22,7 @@ const Article = React.memo(({ data }) => { // highlight-line
     title: object.title
   }].concat(...(object.items ? object.items.map(flatten) : []));
 
-  console.log(navigation);
   const flatNavigation = flatten(navigation);
-  console.log(flatNavigation);
   const i = flatNavigation.findIndex(x => x.path === current.path);
   const neighbor = {
     left: flatNavigation[i - 1],

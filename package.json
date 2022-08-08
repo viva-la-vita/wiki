@@ -27,6 +27,7 @@
     "gatsby-plugin-manifest": "^4.19.0",
     "gatsby-plugin-material-ui": "^4.1.0",
     "gatsby-plugin-mdx": "^3.18.1",
+    "gatsby-plugin-offline": "^5.20.0",
     "gatsby-plugin-sharp": "^4.19.0",
     "gatsby-source-filesystem": "^4.19.0",
     "gatsby-source-strapi": "^2.0.0",
