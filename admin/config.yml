@@ -1,0 +1,116 @@
+backend:
+  name: git-gateway
+
+# For local development, enable `local_backend` and disable `publish_mode`; for production, disable `local_backend` and enable `publish_mode`
+
+# local_backend: true
+publish_mode: editorial_workflow
+
+locale: zh-Hans
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: contents
+    label: 文档目录
+    create: true
+    files:
+      - name: nipple
+        label: 乳首开发文档目录
+        file: docs/contents/nipple.yml
+        fields:
+          - name: series
+            label: 系列
+            widget: string
+          - name: index
+            label: 首页
+            widget: relation
+            collection: nipple_docs
+            value_field: title
+            search_fields: [title, title_cn]
+            display_fields: [title_cn]
+          - name: sections
+            label: 章节
+            widget: list
+            fields:
+              - name: subindex
+                label: 章节首页
+                widget: relation
+                collection: nipple_docs
+                value_field: title
+                search_fields: [title, title_cn]
+                display_fields: [title_cn]
+              - name: pages
+                label: 文章
+                widget: list
+                fields:
+                  - name: title
+                    label: 标题
+                    widget: relation
+                    collection: nipple_docs
+                    value_field: title
+                    search_fields: [title, title_cn]
+                    display_fields: [title_cn]
+      - name: prostate
+        label: 前列腺开发文档目录
+        file: docs/contents/prostate.yml
+        fields:
+          - name: series
+            label: 系列
+            widget: string
+          - name: index
+            label: 首页
+            widget: relation
+            collection: prostate_docs
+            value_field: title
+            search_fields: [title, title_cn]
+            display_fields: [title_cn]
+          - name: sections
+            label: 章节
+            widget: list
+            fields:
+              - name: subindex
+                label: 章节首页
+                widget: relation
+                collection: prostate_docs
+                value_field: title
+                search_fields: [title, title_cn]
+                display_fields: [title_cn]
+              - name: pages
+                label: 文章
+                widget: list
+                fields:
+                  - name: title
+                    label: 标题
+                    widget: relation
+                    collection: prostate_docs
+                    value_field: title
+                    search_fields: [title, title_cn]
+                    display_fields: [title_cn]
+  - name: nipple_docs
+    label: 乳首开发文章
+    extension: mdx
+    format: frontmatter
+    folder: docs/nipple
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title_cn}} ({{title}})'
+    sortable_fields: [commit_date, title, title_cn]
+    fields:
+      - { label: 中文标题, name: title_cn, widget: string }
+      - { label: 英文标题, name: title, widget: string }
+      - { label: 内容, name: body, widget: markdown }
+  - name: prostate_docs
+    label: 前列腺开发文章
+    extension: mdx
+    format: frontmatter
+    folder: docs/prostate
+    create: true
+    slug: '{{slug}}'
+    summary: '{{title_cn}} ({{title}})'
+    sortable_fields: [commit_date, title, title_cn]
+    fields:
+      - { label: 中文标题, name: title_cn, widget: string }
+      - { label: 英文标题, name: title, widget: string }
+      - { label: 内容, name: body, widget: markdown }
