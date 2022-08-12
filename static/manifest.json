@@ -1,0 +1,22 @@
+{
+  "name": "生如夏花",
+  "short_name": "生如夏花",
+  "theme_color": "#ff7777",
+  "background_color": "#424242",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./index.html",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://viva-la-vita.org/manifest.json"
+    }
+  ],
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    }
+  ]
+}
