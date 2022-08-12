@@ -10,7 +10,7 @@ const config = {
   tagline: '探索美好而新奇的性体验',
   url: 'https://wiki.viva-la-vita.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
 

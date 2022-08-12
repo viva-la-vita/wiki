@@ -90,8 +90,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="生如夏花知识库是由热爱交流与分享的生如夏花创作者们发起的知识共享项目，致力于生产、收集与传播有关性开发的知识。我们的内容部分来自于国外互联网内容的翻译，部分来自于生如夏花社区的实践经验总结。希望这些知识能对您有所帮助。">
       <HomepageHeader />
       <main>
         <div className="container" style={{padding: "2rem"}}>
