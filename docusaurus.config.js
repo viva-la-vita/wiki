@@ -4,6 +4,9 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const fs = require('fs');
+const meta = JSON.parse(fs.readFileSync('meta.json', { encoding: 'utf-8' }));
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '生如夏花知识库',
@@ -42,7 +45,7 @@ const config = {
           {
             tagName: 'link',
             rel: 'icon',
-            href: '/logo.png',
+            href: '/apple-icon-180.png',
           },
           {
             tagName: 'link',
@@ -67,15 +70,9 @@ const config = {
           {
             tagName: 'link',
             rel: 'apple-touch-icon',
-            href: '/logo.png',
+            href: '/apple-icon-180.png',
           },
-          {
-            tagName: 'link',
-            rel: 'mask-icon',
-            href: '/logo.svg',
-            color: 'rgb(255, 136, 136)',
-          },
-        ],
+        ].concat(meta),
       },
     ],
   ],
@@ -104,7 +101,9 @@ const config = {
         title: '生如夏花知识库',
         logo: {
           alt: '生如夏花知识库',
-          src: 'logo.svg',
+          src: 'favicon.ico',
+          width: 32,
+          height: 32
         },
         items: [
           {

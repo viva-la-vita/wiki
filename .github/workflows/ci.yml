@@ -10,8 +10,10 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: npm
@@ -19,8 +21,10 @@ jobs:
         run: npm ci
       - name: Create env file
         run: echo STRAPI_TOKEN=${{ secrets.STRAPI_TOKEN }} > .env
-      - name: Build website
+      - name: Fetch content
         run: npm run api
+      - name: Generate PWA assets
+        run: npm run pwa
       - name: Build website
         run: npm run build
       - name: Deploy to GitHub Pages
