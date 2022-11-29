@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios').default;
 const fs = require('fs');
 
 require('dotenv').config({
@@ -15,9 +15,6 @@ const preprocess = (article, dev) => {
 (async () => {
   const { data } = await axios.get(`/navigation/render/1`, {
     baseURL: 'https://api.viva-la-vita.org/api',
-    headers: {
-      'Authorization': `Bearer ${process.env.STRAPI_TOKEN}`,
-    },
     params: {
       type: 'TREE'
     }
