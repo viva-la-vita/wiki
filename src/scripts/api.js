@@ -1,16 +1,24 @@
 const axios = require('axios').default;
 const fs = require('fs');
 
-require('dotenv').config({
-  path: `.env`,
-});
-
-const preprocess = (article, dev) => {
-  const yaml = `---\ntitle: ${article.title}\nsidebar_position: ${article.order + dev}\n---\n`;
-  const body = article.related.content.replaceAll(/^(#+)/gm, '#$1');
+const preprocess = (article, toplevel) => {
+  const yaml = `---\ntitle: ${toplevel ? '简介' : article.title}\nsidebar_position: ${toplevel ? -1 : article.order}\n---\n`;
+  let body = article.related.content;
+  body = body.replaceAll(/^(#+)/gm, '#$1');
   return `${yaml}\n${body}`;
 }
 
+const visit = (node, toplevel=false) => {
+  if (toplevel || node.items.length) {
+    fs.mkdirSync(`docs${node.path}`, { recursive: true });
+    fs.writeFileSync(`docs${node.path}/index.mdx`, preprocess(node, toplevel));
+    for (const child of node.items) {
+      visit(child);
+    }
+  } else {
+    fs.writeFileSync(`docs${node.path}.mdx`, preprocess(node, toplevel));
+  }
+}
 
 (async () => {
   const { data } = await axios.get(`/navigation/render/1`, {
@@ -20,15 +28,5 @@ const preprocess = (article, dev) => {
     }
   });
 
-  for (const series of data) {
-    fs.mkdirSync(`docs${series.path}`, { recursive: true });
-    fs.writeFileSync(`docs${series.path}/index.md`, preprocess(series, 0));
-    for (const section of series.items) {
-      fs.mkdirSync(`docs${section.path}`, { recursive: true });
-      fs.writeFileSync(`docs${section.path}/index.md`, preprocess(section, 1));
-      for (const article of section.items) {
-        fs.writeFileSync(`docs${article.path}.md`, preprocess(article, 0));
-      }
-    }
-  }
+  data.map(x => visit(x, true));
 })();

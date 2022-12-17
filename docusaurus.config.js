@@ -107,20 +107,20 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'nipple/index',
+            type: 'docSidebar',
+            sidebarId: 'nipple',
             position: 'left',
             label: '乳首',
           },
           {
-            type: 'doc',
-            docId: 'prostate/index',
+            type: 'docSidebar',
+            sidebarId: 'prostate',
             position: 'left',
             label: '前列腺',
           },
           {
-            type: 'doc',
-            docId: 'hypnosis/index',
+            type: 'docSidebar',
+            sidebarId: 'hypnosis',
             position: 'left',
             label: '催眠',
           },
