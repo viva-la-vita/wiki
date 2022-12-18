@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path');
 
 const fs = require('fs');
 const meta = JSON.parse(fs.readFileSync('meta.json', { encoding: 'utf-8' }));
@@ -32,6 +33,16 @@ const config = {
   },
 
   plugins: [
+    '@docusaurus/plugin-content-pages',
+    [
+      // path.resolve(__dirname, 'plugins', 'docusaurus-plugin-content-docs-strapi'),
+      '@docusaurus/plugin-content-docs',
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        routeBasePath: '/',
+        sidebarPath: require.resolve('./sidebars.js'),
+      },
+    ],
     [
       '@docusaurus/plugin-pwa',
       {
@@ -77,26 +88,19 @@ const config = {
     ],
   ],
 
-  presets: [
+  themes: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
-        },
-        blog: false,
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
+      {
+        customCss: require.resolve('./src/css/custom.css'),
+      },
     ],
+    '@docusaurus/theme-search-algolia',
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    /** @type {import('@docusaurus/theme-classic').Options} */
+    {
       navbar: {
         title: '生如夏花知识库',
         logo: {
@@ -154,7 +158,13 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+      algolia: {
+        appId: 'DLIWFQPED3',
+        apiKey: '23bcb8656cdad247e34b40aea9efdb17',
+        indexName: 'wiki',
+        contextualSearch: true,
+      },
+    },
 };
 
 module.exports = config;

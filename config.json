@@ -1,0 +1,13 @@
+{
+  "index_name": "wiki",
+  "start_urls": ["https://wiki.viva-la-vita.org/"],
+  "selectors": {
+    "lvl0": ".markdown h1",
+    "lvl1": ".markdown h2",
+    "lvl2": ".markdown h3",
+    "lvl3": ".markdown h4",
+    "lvl4": ".markdown h5",
+    "lvl5": ".markdown h6",
+    "text": ".markdown p, .markdown ul, .markdown ol, .markdown blockquote"
+  }
+}
