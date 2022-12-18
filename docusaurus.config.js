@@ -86,6 +86,7 @@ const config = {
         ].concat(meta),
       },
     ],
+    '@docusaurus/plugin-sitemap'
   ],
 
   themes: [
