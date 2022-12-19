@@ -27,18 +27,18 @@ const config = {
   plugins: [
     '@docusaurus/plugin-content-pages',
     [
-      // path.resolve(__dirname, 'plugins', 'docusaurus-plugin-content-docs-strapi'),
-      '@docusaurus/plugin-content-docs',
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
-      {
+      'docusaurus-plugin-remote-docs',
+      /** @type {import('docusaurus-plugin-remote-docs').Options} */
+      ({
         routeBasePath: '/',
         sidebarPath: require.resolve('./sidebars.js'),
-      },
+        downloader: require('viva-la-vita').downloadWiki,
+      }),
     ],
     [
       'docusaurus-plugin-pwa-generator',
-      /** @type {import('docusaurus-plugin-pwa-generator').Options} */
-      {
+      /** @type {import('docusaurus-plugin-pwa-generator').PluginOptions} */
+      ({
         debug: true,
         offlineModeActivationStrategies: [
           'appInstalled',
@@ -59,24 +59,32 @@ const config = {
           outputFolderPath: './static',
           options: { log: false }
         }
-      },
+      }),
     ],
-    '@docusaurus/plugin-sitemap'
+    '@docusaurus/plugin-sitemap',
+    [
+      '@docusaurus/plugin-google-gtag',
+      /** @type {import('@docusaurus/plugin-google-gtag').Options} */
+      ({
+        trackingID: 'G-9VRE8Q9M2G'
+      })
+    ]
   ],
 
   themes: [
     [
-      'classic',
-      {
+      '@docusaurus/theme-classic',
+      /** @type {import('@docusaurus/theme-classic').Options} */
+      ({
         customCss: require.resolve('./src/css/custom.css'),
-      },
+      }),
     ],
     '@docusaurus/theme-search-algolia',
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/theme-classic').Options} */
-    {
+    /** @type {import('@docusaurus/types').ThemeConfig & import('@docusaurus/theme-search-algolia').UserThemeConfig} */
+    ({
       navbar: {
         title: '生如夏花知识库',
         logo: {
@@ -139,8 +147,8 @@ const config = {
         apiKey: '23bcb8656cdad247e34b40aea9efdb17',
         indexName: 'wiki',
         contextualSearch: true,
-      },
-    },
+      }
+    }),
 };
 
 module.exports = config;

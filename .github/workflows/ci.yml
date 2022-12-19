@@ -16,12 +16,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Fetch content
-        run: npm run api
       - name: Build website
         run: npm run build
       - name: Deploy to GitHub Pages
