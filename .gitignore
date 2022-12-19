@@ -10,8 +10,3 @@
 static/*.jpg
 static/*.png
 static/*.json
-meta.json
-
-# Misc
-.env
-.vscode

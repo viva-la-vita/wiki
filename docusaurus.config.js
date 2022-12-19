@@ -1,12 +1,7 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const path = require('path');
-
-const fs = require('fs');
-const meta = JSON.parse(fs.readFileSync('meta.json', { encoding: 'utf-8' }));
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -19,14 +14,11 @@ const config = {
   favicon: 'favicon.ico',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'viva-la-vita', // Usually your GitHub org/user name.
-  projectName: 'wiki', // Usually your repo name.
+  organizationName: 'viva-la-vita',
+  projectName: 'wiki',
   trailingSlash: false,
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
+  // Internalization
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans'],
@@ -44,7 +36,8 @@ const config = {
       },
     ],
     [
-      '@docusaurus/plugin-pwa',
+      'docusaurus-plugin-pwa-generator',
+      /** @type {import('docusaurus-plugin-pwa-generator').Options} */
       {
         debug: true,
         offlineModeActivationStrategies: [
@@ -52,38 +45,20 @@ const config = {
           'standalone',
           'queryString',
         ],
-        pwaHead: [
-          {
-            tagName: 'link',
-            rel: 'icon',
-            href: '/apple-icon-180.png',
-          },
-          {
-            tagName: 'link',
-            rel: 'manifest',
-            href: '/manifest.json',
-          },
-          {
-            tagName: 'meta',
-            name: 'theme-color',
-            content: 'rgb(255, 136, 136)',
-          },
-          {
-            tagName: 'meta',
-            name: 'apple-mobile-web-app-capable',
-            content: 'yes',
-          },
-          {
-            tagName: 'meta',
-            name: 'apple-mobile-web-app-status-bar-style',
-            content: '#000',
-          },
-          {
-            tagName: 'link',
-            rel: 'apple-touch-icon',
-            href: '/apple-icon-180.png',
-          },
-        ].concat(meta),
+        partialManifest: {
+          "name": "生如夏花知识库",
+          "short_name": "生如夏花知识库",
+          "theme_color": "#ff7777",
+          "background_color": "#424242",
+          "display": "standalone",
+          "scope": "./",
+          "start_url": "./index.html"
+        },
+        generatorInput: {
+          source: './static/favicon.ico',
+          outputFolderPath: './static',
+          options: { log: false }
+        }
       },
     ],
     '@docusaurus/plugin-sitemap'
