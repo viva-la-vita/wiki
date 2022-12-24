@@ -1,8 +1,5 @@
 // @ts-check
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: '生如夏花知识库',
@@ -37,7 +34,7 @@ const config = {
     ],
     [
       'docusaurus-plugin-pwa-generator',
-      /** @type {import('docusaurus-plugin-pwa-generator').PluginOptions} */
+      /** @type {import('docusaurus-plugin-pwa-generator').Options} */
       ({
         debug: true,
         offlineModeActivationStrategies: [
@@ -56,7 +53,6 @@ const config = {
         },
         generatorInput: {
           source: './static/favicon.ico',
-          outputFolderPath: './static',
           options: { log: false }
         }
       }),
@@ -94,44 +90,8 @@ const config = {
           height: 32
         },
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'nipple',
-            position: 'left',
-            label: '乳首',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'prostate',
-            position: 'left',
-            label: '前列腺',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'hypnosis',
-            position: 'left',
-            label: '催眠',
-          },
-          {
-            href: 'https://viva-la-vita.org',
-            label: '主页',
-            position: 'right',
-          },
-          {
-            href: 'https://bbs.viva-la-vita.org',
-            label: '论坛',
-            position: 'right',
-          },
-          {
-            href: 'https://github.com/viva-la-vita',
-            label: 'GitHub',
-            position: 'right',
-          },
-          {
-            href: 'https://afdian.net/@vivalavita',
-            label: '爱发电',
-            position: 'right',
-          },
+          ...[['乳首', 'nipple'], ['前列腺', 'prostate'], ['催眠', 'hypnosis']].map(([ label, sidebarId ]) => ({ type: 'docSidebar', position: 'left', label, sidebarId })),
+          ...[['主页', 'https://viva-la-vita.org'], ['论坛', 'https://bbs.viva-la-vita.org'], ['GitHub', 'https://github.com/viva-la-vita'], ['爱发电', 'https://afdian.net/@vivalavita']].map(([ label, href ]) => ({ position: 'right', label, href }))
         ],
       },
       footer: {
@@ -139,8 +99,8 @@ const config = {
         copyright: `CC-BY-SA 4.0 © 2019 - ${new Date().getFullYear()} 生如夏花开发者及创作者`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: require('prism-react-renderer/themes/github'),
+        darkTheme: require('prism-react-renderer/themes/dracula'),
       },
       algolia: {
         appId: 'DLIWFQPED3',
