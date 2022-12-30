@@ -85,7 +85,7 @@ const config = {
         title: '生如夏花知识库',
         logo: {
           alt: '生如夏花知识库',
-          src: 'favicon-32x32.ico',
+          src: 'favicon-100x100.ico',
           width: 32,
           height: 32
         },
