@@ -44,11 +44,21 @@ const FeatureList: FeatureItem[] = [
     ),
     url: '/hypnosis'
   },
+  {
+    title: '潮吹',
+    description: (
+      <>
+        Extend or customize your website layout by reusing React. Docusaurus can
+        be extended while reusing the same header and footer.
+      </>
+    ),
+    url: '/squirting'
+  },
 ];
 
 function Feature({title, description, url}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3')}>
       <div className="text--center padding-horiz--lg">
         <Link to={url}>
           <div className={styles.feature}>
