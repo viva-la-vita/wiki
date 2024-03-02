@@ -90,7 +90,7 @@ const config = {
           height: 32
         },
         items: [
-          ...[['乳首', 'nipple'], ['前列腺', 'prostate'], ['催眠', 'hypnosis'], ['潮吹', 'squirting']].map(([ label, sidebarId ]) => ({ type: 'docSidebar', position: 'left', label, sidebarId })),
+          ...[['基础', 'general'], ['乳首', 'nipple'], ['前列腺', 'prostate'], ['催眠', 'hypnosis'], ['潮吹', 'squirting']].map(([ label, sidebarId ]) => ({ type: 'docSidebar', position: 'left', label, sidebarId })),
           ...[['主页', 'https://viva-la-vita.org'], ['论坛', 'https://bbs.viva-la-vita.org'], ['GitHub', 'https://github.com/viva-la-vita'], ['爱发电', 'https://afdian.net/@vivalavita']].map(([ label, href ]) => ({ position: 'right', label, href }))
         ],
       },

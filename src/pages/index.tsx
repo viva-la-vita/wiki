@@ -15,6 +15,16 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
+    title: '基础',
+    description: (
+      <>
+        Docusaurus was designed from the ground up to be easily installed and
+        used to get your website up and running quickly.
+      </>
+    ),
+    url: '/general'
+  },
+  {
     title: '乳首',
     description: (
       <>
