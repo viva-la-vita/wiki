@@ -98,10 +98,6 @@ const config = {
         style: 'dark',
         copyright: `CC-BY-SA 4.0 © 2019 - ${new Date().getFullYear()} 生如夏花开发者及创作者`,
       },
-      prism: {
-        theme: require('prism-react-renderer/themes/github'),
-        darkTheme: require('prism-react-renderer/themes/dracula'),
-      },
       algolia: {
         appId: 'DLIWFQPED3',
         apiKey: '23bcb8656cdad247e34b40aea9efdb17',
